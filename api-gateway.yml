@@ -12,12 +12,17 @@ eureka:
     prefer-ip-address: true
 
 spring:
+  application:
+    name: api-gateway
   cloud:
     gateway:
       discovery:
         locator:
           enabled: false
       routes:
+        # =====================
+        # Swagger Docs Routes
+        # =====================
         - id: auth-service-docs
           uri: lb://auth-service
           predicates:
@@ -46,6 +51,21 @@ spring:
           filters:
             - StripPrefix=2
 
+        # =====================
+        # Internal Endpoint Blocks
+        # =====================
+        - id: catalog-stock-block
+          uri: no://op
+          predicates:
+            - Path=/gateway/catalog/products/*/stock
+          filters:
+            - name: SetStatus
+              args:
+                status: 403
+
+        # =====================
+        # Main Service Routes
+        # =====================
         - id: auth-service
           uri: lb://auth-service
           predicates:
