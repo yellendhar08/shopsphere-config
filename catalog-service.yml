@@ -11,6 +11,12 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+    
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 
 eureka:
   client:
@@ -27,8 +33,3 @@ management:
     tracing:
       endpoint: http://localhost:9411/api/v2/spans
 
-logging:
-  level:
-    root: INFO
-  pattern:
-    console: "%d{yyyy-MM-dd HH:mm:ss} %5p [${spring.application.name},%X{traceId},%X{spanId}] %c - %msg%n"
