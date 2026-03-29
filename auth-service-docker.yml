@@ -6,6 +6,11 @@ spring:
     hikari:
       initializationFailTimeout: 60000
 
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+
 eureka:
   client:
     service-url:
