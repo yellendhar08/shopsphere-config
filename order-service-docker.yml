@@ -3,6 +3,9 @@ spring:
     url: jdbc:mysql://mysql:3306/order_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&autoReconnect=true&maxReconnects=10
     username: root
     password: '@Lodigoud25'
+    hikari:
+      initializationFailTimeout: 60000
+
   rabbitmq:
     host: rabbitmq
 
